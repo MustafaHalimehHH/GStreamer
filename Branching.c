@@ -50,8 +50,8 @@ int ddmain(int argc, char* argv[])
 	rtph264pay = gst_element_factory_make("rtph264pay", "rtph264pay");
 	g_object_set(G_OBJECT(rtph264pay), "pt", 96, NULL);
 	udpSink = gst_element_factory_make("udpsink", "udpSink");
-	g_object_set(G_OBJECT(udpSink), "host", "172.17.129.117", NULL);
-	g_object_set(G_OBJECT(udpSink), "port", 1240, NULL);
+	g_object_set(G_OBJECT(udpSink), "host", "xxx.xxx.xxx.xxx", NULL);
+	g_object_set(G_OBJECT(udpSink), "port", xxxx, NULL);
 	queueLocal = gst_element_factory_make("queue", "queueLocal");
 	videoSrcLocal = gst_element_factory_make("videotestsrc", "videoSrcLocal");
 	videoSink = gst_element_factory_make("autovideosink", "videoSink");
@@ -63,9 +63,9 @@ int ddmain(int argc, char* argv[])
 
 	//pipeline = gst_parse_launch("vidreotestsrc ! autovideosink", NULL);
 	//pipeline = gst_parse_launch("tee name=t .t ! queue ! videotestsrc ! autovideosink t. ! queue ! videotestsrc pattern=ball ! autovideosink", NULL);
-	//pipeline = gst_parse_launch("tee name=t t. ! queue ! videotestsrc pattern=ball ! x264enc ! video/x-h264, width=640, height=480, stream-format=byte-stream, framerate=10/1 ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1240 \
-								t. ! queue ! udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink", NULL);
-		//t. ! queue ! udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink", NULL);
+	//pipeline = gst_parse_launch("tee name=t t. ! queue ! videotestsrc pattern=ball ! x264enc ! video/x-h264, width=640, height=480, stream-format=byte-stream, framerate=10/1 ! rtph264pay pt=96 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx \
+								t. ! queue ! udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink", NULL);
+		//t. ! queue ! udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink", NULL);
 		//t. ! queue ! videotestsrc ! autovideosink", NULL);
 					
 

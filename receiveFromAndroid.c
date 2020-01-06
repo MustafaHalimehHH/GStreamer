@@ -19,7 +19,7 @@ int ffmain(int argc, char *argv[])
 	pipeline = gst_pipeline_new("receive_from_android");
 
 	udpSrc = gst_element_factory_make("udpsrc", "udpSrc");
-	g_object_set(G_OBJECT(udpSrc), "port", 1238, NULL);
+	g_object_set(G_OBJECT(udpSrc), "port", xxxx, NULL);
 	capsFilter = gst_element_factory_make("capsfilter", "capsFilter");
 	GstCaps *caps = gst_caps_new_simple("application/x-rtp",
 		"encoding-name", G_TYPE_STRING, "H264",

@@ -38,8 +38,8 @@ int meain(int argc, char *argv[])
 	rtph264pay = gst_element_factory_make("rtph264pay", "rtph264pay");
 	g_object_set(G_OBJECT(rtph264pay), "pt", 96, NULL);
 	udpSink = gst_element_factory_make("udpsink", "udpSink");
-	g_object_set(G_OBJECT(udpSink), "host", "10.22.221.156", NULL); /*10.22.221.156*/ /*172.17.129.117*/
-	g_object_set(G_OBJECT(udpSink), "port", 1238, NULL);
+	g_object_set(G_OBJECT(udpSink), "host", "xxx.xxx.xxx.xxx", NULL); /*xxx.xxx.xxx.xxx*/ /*xxx.xxx.xxx.xxx*/
+	g_object_set(G_OBJECT(udpSink), "port", xxxx, NULL);
 	g_object_set(G_OBJECT(udpSink), "buffer-size", 4096, NULL);
 	g_object_set(G_OBJECT(udpSink), "sync", FALSE, NULL);
 	g_object_set(G_OBJECT(udpSink), "async", FALSE, NULL);

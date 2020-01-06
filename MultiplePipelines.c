@@ -152,12 +152,12 @@ static gpointer pipe_updsink(gpointer data)
 	context = g_main_context_new();
 
 	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! autovideosink", NULL);
-	//pipeline = gst_parse_launch("videotestsrc pattern=ball ! x264enc ! video/x-h264, width=640, height=480, stream-format=byte-stream, framerate=30/1 ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1240", NULL);
-	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1240 buffer-size=4096", NULL);
-	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1240", NULL);
-	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! autovideosink t. ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4048 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! queue2 ! udpsink host=172.17.129.117 port=1240", NULL);
-	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! autovideosink t. ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=2 bitrate=8048 ! video/x-h264, stream-format=byte-stream ! queue2 ! rtph264pay pt=96 ! queue2 ! udpsink host=172.17.129.117 port=1240 sync=true", NULL);
-	pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! timeoverlay time-mode=0 text=Sender ! autovideosink t. ! queue2 ! timecodestamper ! videoconvert ! videorate ! video/x-raw, framerate=25/1 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=2 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1240 sync=false buffer-size=4096", NULL);
+	//pipeline = gst_parse_launch("videotestsrc pattern=ball ! x264enc ! video/x-h264, width=640, height=480, stream-format=byte-stream, framerate=30/1 ! rtph264pay pt=96 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx", NULL);
+	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx buffer-size=4096", NULL);
+	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=xxxx.xxx.xxx.xxx port=xxxx", NULL);
+	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! autovideosink t. ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=4 bitrate=4048 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! queue2 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx", NULL);
+	//pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! autovideosink t. ! queue2 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=2 bitrate=8048 ! video/x-h264, stream-format=byte-stream ! queue2 ! rtph264pay pt=96 ! queue2 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx sync=true", NULL);
+	pipeline = gst_parse_launch("filesrc location=C:/Users/halimeh/Desktop/ProceduralDemo.mp4 ! decodebin name=dec ! tee name=t t. ! queue2 ! timeoverlay time-mode=0 text=Sender ! autovideosink t. ! queue2 ! timecodestamper ! videoconvert ! videorate ! video/x-raw, framerate=25/1 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stream=true threads=2 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx sync=false buffer-size=4096", NULL);
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
 	g_print("Entering main_loop_1\n");
@@ -179,10 +179,10 @@ static gpointer pipe_udpsrc(gpointer data)
 
 	context = g_main_context_new();
 
-	//pipeline = gst_parse_launch("udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 skip-frame=1 ! videoconvert ! autovideosink sync=false async=false", NULL);
-	//pipeline = gst_parse_launch("udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 skip-frame=1 ! autovideosink sync=false async=false", NULL);
-	//pipeline = gst_parse_launch("udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer mode=4 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 ! autovideosink sync=false async=false", NULL);
-	pipeline = gst_parse_launch("udpsrc port=1241 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! rtph264depay ! h264parse disable-passthrouhg=true ! queue ! avdec_h264 skip-frame=1 lowres=2 ! timeoverlay time-mode=0 text=Receiver ! autovideosink sync=false async=false", NULL);
+	//pipeline = gst_parse_launch("udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 skip-frame=1 ! videoconvert ! autovideosink sync=false async=false", NULL);
+	//pipeline = gst_parse_launch("udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 skip-frame=1 ! autovideosink sync=false async=false", NULL);
+	//pipeline = gst_parse_launch("udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer mode=4 ! queue2 ! rtph264depay ! h264parse ! avdec_h264 max-threads=4 ! autovideosink sync=false async=false", NULL);
+	pipeline = gst_parse_launch("udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! rtph264depay ! h264parse disable-passthrouhg=true ! queue ! avdec_h264 skip-frame=1 lowres=2 ! timeoverlay time-mode=0 text=Receiver ! autovideosink sync=false async=false", NULL);
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
 	g_print("Entering main_loop_2\n");
@@ -205,7 +205,7 @@ static gpointer pipe_udpsrc_updsink(gpointer data)
 
 	context = g_main_context_new();
 
-	pipeline = gst_parse_launch("udpsrc port=1240 ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 skip-frame=1 max-threads=2 ! tee name=t t. ! queue ! videobalance saturation=0.25 ! videoconvert ! autovideosink sync=false t. ! queue ! videobalance saturation=0.0 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stram=true threads=1 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=172.17.129.117 port=1241 buffer-size=4096 sync=false", NULL);
+	pipeline = gst_parse_launch("udpsrc port=xxxx ! application/x-rtp, encoding-name=H264, payload=96 ! rtpjitterbuffer latency=50 mode=1 ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 skip-frame=1 max-threads=2 ! tee name=t t. ! queue ! videobalance saturation=0.25 ! videoconvert ! autovideosink sync=false t. ! queue ! videobalance saturation=0.0 ! x264enc aud=false speed-preset=1 tune=4 pass=5 quantizer=22 byte-stram=true threads=1 bitrate=4096 ! video/x-h264, stream-format=byte-stream ! rtph264pay pt=96 ! udpsink host=xxx.xxx.xxx.xxx port=xxxx buffer-size=4096 sync=false", NULL);
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
 	g_print("Entering main_loop_3\n");
